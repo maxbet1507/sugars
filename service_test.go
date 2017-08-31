@@ -3,6 +3,7 @@ package sugars
 import (
 	"context"
 	"fmt"
+	"testing"
 )
 
 func ExampleServiceFunc() {
@@ -49,4 +50,15 @@ func ExampleServiceFunc() {
 	// stopped
 	// 7 false
 	// 8 false
+}
+
+func TestServiceFuncContextCanceled(t *testing.T) {
+	ctx, cancel := context.WithCancel(context.Background())
+
+	svc := ServiceFunc(ctx, func(ctx context.Context) {
+		cancel()
+		<-ctx.Done()
+	})
+	svc.Start()
+	svc.Dispose()
 }
