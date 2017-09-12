@@ -18,7 +18,7 @@ func (s WaitMain) Main(ctx context.Context) error {
 }
 
 func TestWaitMain(t *testing.T) {
-	s := New(context.Background(), WaitMain{})
+	s := NewService(context.Background(), WaitMain{})
 
 	if r := s.Running(); r {
 		t.Fatal(r)
@@ -98,7 +98,7 @@ func (s NowaitMain) Main(context.Context) error {
 func TestNowaitMain(t *testing.T) {
 	ctx, cancel := context.WithCancel(context.Background())
 
-	s := New(context.Background(), NowaitMain{cancel: cancel})
+	s := NewService(context.Background(), NowaitMain{cancel: cancel})
 
 	s.Start()
 	<-ctx.Done()
