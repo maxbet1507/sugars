@@ -128,8 +128,8 @@ func (s *service) main(ctx context.Context, m Main) {
 	}
 }
 
-// New -
-func New(ctx context.Context, m Main) Service {
+// NewService -
+func NewService(ctx context.Context, m Main) Service {
 	subctx, cancel := context.WithCancel(ctx)
 
 	wg := new(sync.WaitGroup)
