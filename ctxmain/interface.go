@@ -17,3 +17,9 @@ type Service interface {
 	Running() bool
 	Dispose()
 }
+
+// Status -
+type Status interface {
+	Report(error)
+	Result() error
+}
